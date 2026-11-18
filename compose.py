@@ -84,13 +84,15 @@ d.polygon([(px+21,py+54),(px+78,py+34),(px+119,py+51),(px+150,py+39),(px+186,py+
 d.ellipse((px+88,py+82,px+142,py+105), fill=GREEN)
 d.ellipse((px+177,py+185,px+225,py+208), fill=GREEN)
 star(px+172, py+130, 36, 17, fill=ORANGE)
+d.ellipse((px+128, py+86, px+216, py+174), outline=RED, width=2)
 jet(px+215, py+101, .88)
 d.text((px+20,py+266), "QESHM ISLAND", font=bold(14), fill=PAPER)
+d.text((px+190,py+245), "PERSIAN GULF", font=bold(9), fill=PAPER)
 
 tx = 374
 d.text((tx, 180), "US-IRAN WAR ESCALATES", font=bold(22), fill=RED)
 draw_text_block("US BOMBS IRAN'S QESHM ISLAND", (tx, 207), serif(47), INK, 605, line_gap=-1, max_lines=3)
-draw_text_block("Jets strike a Revolutionary Guard missile site; Iran answers with drones on US bases in Bahrain and Kuwait, its third Bahrain attack in a week", (tx, 348), sans(22), INK, 605, line_gap=3, max_lines=4)
+draw_text_block("Jets strike a Revolutionary Guard missile site; Iran answers with drones on US bases in Bahrain and Kuwait, its third Bahrain attack in a week", (tx, 312), sans(22), INK, 605, line_gap=3, max_lines=4)
 d.line((32, 489, 992, 489), fill=INK, width=2)
 
 # Four compact illustrated stories
@@ -167,7 +169,12 @@ d.line((32, 940, 992, 940), fill=INK, width=1)
 # Ticker and footer
 tick_text = "ALSO ON WEDNESDAY: Category 5 Cyclone Xavier hits the Cook Islands • World Court to rule on Myanmar genocide case • Cyber-attack freezes supermarket freezers in 7 European countries • GTA VI launches at midnight"
 d.rectangle((32, 946, 992, 990), fill=INK)
-draw_text_block(tick_text, (45, 949), bold(13), PAPER, 934, line_gap=1, max_lines=2)
+tick_font = bold(13)
+tick_prefix = "ALSO ON WEDNESDAY:"
+d.text((45, 949), tick_prefix, font=tick_font, fill=ORANGE)
+tick_rest = tick_text[len(tick_prefix):].lstrip()
+tick_rest_x = 45 + d.textlength(tick_prefix + " ", font=tick_font)
+draw_text_block(tick_rest, (tick_rest_x, 949), tick_font, PAPER, 934 - (tick_rest_x - 45), line_gap=1, max_lines=2)
 footer = "The world's news of Wednesday 18 November 2026, summed up in one image"
 # Footer sits in the final safe margin, centered and fully visible.
 d.text(((W-d.textlength(footer,font=sans(14)))/2,993), footer, font=sans(14), fill=INK)
